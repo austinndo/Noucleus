@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { URL } from './Globals'
 import SignIn from './pages/SignIn'
+import SignUp from './pages/SignUp'
 
 const App = () => {
   const [genes, setGenes] = useState([])
@@ -18,19 +19,22 @@ const App = () => {
   }, [])
 
   return (
-    // <div>
-    //   <h1>Noucleus App</h1>
-    //   {genes.map((gene) => (
-    //     <div key={gene.id}>
-    //       <h2>{gene.name}</h2>
-    //       <h2>{gene.function}</h2>
-    //     </div>
-    //   ))}
-    // </div>
     <div>
-      <Routes>
-        <Route path="/" element={<SignIn />} />
-      </Routes>
+      {/* <div>
+        <h1>Noucleus App</h1>
+        {genes.map((gene) => (
+          <div key={gene.id}>
+            <h2>{gene.name}</h2>
+            <h2>{gene.function}</h2>
+          </div>
+        ))}
+      </div> */}
+      <div>
+        <Routes>
+          <Route path="/" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
+      </div>
     </div>
   )
 }
