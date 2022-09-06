@@ -1,10 +1,11 @@
 import './App.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import { URL } from './Globals'
+import SignIn from './pages/SignIn'
 
-const URL = 'http://localhost:8000'
-
-function App() {
+const App = () => {
   const [genes, setGenes] = useState([])
 
   useEffect(() => {
@@ -17,14 +18,19 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <h1>Noucleus App</h1>
-      {genes.map((gene) => (
-        <div key={gene.id}>
-          <h2>{gene.name}</h2>
-          <h2>{gene.function}</h2>
-        </div>
-      ))}
+    // <div>
+    //   <h1>Noucleus App</h1>
+    //   {genes.map((gene) => (
+    //     <div key={gene.id}>
+    //       <h2>{gene.name}</h2>
+    //       <h2>{gene.function}</h2>
+    //     </div>
+    //   ))}
+    // </div>
+    <div>
+      <Routes>
+        <Route path="/" element={<SignIn />} />
+      </Routes>
     </div>
   )
 }
