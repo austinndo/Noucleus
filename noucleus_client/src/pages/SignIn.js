@@ -1,7 +1,8 @@
 import axios from 'axios'
-import { URL } from '../Globals'
 import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+
+const URL = process.env.REACT_APP_URL
 
 const SignIn = () => {
   let navigate = useNavigate()
