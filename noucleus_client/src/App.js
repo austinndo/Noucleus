@@ -2,7 +2,7 @@ import './App.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
-const URL = 'http://localhost:8000/'
+const URL = 'http://localhost:8000'
 
 function App() {
   const [genes, setGenes] = useState([])
@@ -18,6 +18,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Noucleus App</h1>
       {genes.map((gene) => (
         <div key={gene.id}>
           <h2>{gene.name}</h2>
