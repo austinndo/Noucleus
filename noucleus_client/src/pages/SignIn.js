@@ -1,8 +1,11 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { Button, Input } from 'react-rainbow-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fortawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
-const URL = process.env.REACT_APP_URL
+const URL = process.env.REACT_APP_API_URL
 
 const SignIn = () => {
   let navigate = useNavigate()
@@ -39,43 +42,41 @@ const SignIn = () => {
 
   return (
     <div className="signInPage">
-      <div className="signin-container">
-        <div className="signin-background">
-          <form className="signin-form" onSubmit={handleSubmit}>
-            <h1>Sign In</h1>
-            <div className="input-wrapper">
-              <input
-                onChange={handleChange}
-                name="username"
-                type="text"
-                placeholder="username"
-                value={formValues.username}
-                required
-              />
-            </div>
-            <div className="input-wrapper">
-              <input
-                onChange={handleChange}
-                name="email"
-                type="text"
-                placeholder="email"
-                value={formValues.email}
-                required
-              />
-            </div>
-            <button
-              className="signin-btn"
-              disabled={!formValues.username || !formValues.email}
-            >
-              Sign In
-            </button>
-            <div className="link-switch">
-              <Link className="link signLink" to="/signup">
-                Don't have an account?
-              </Link>
-            </div>
-          </form>
-        </div>
+      <div className="signInContainer">
+        <form className="signin-form" onSubmit={handleSubmit}>
+          <h1>Sign In</h1>
+          <div className="input-wrapper">
+            <Input
+              onChange={handleChange}
+              name="username"
+              type="text"
+              placeholder="username"
+              value={formValues.username}
+              required
+            />
+          </div>
+          <div className="input-wrapper">
+            <Input
+              onChange={handleChange}
+              name="email"
+              type="text"
+              placeholder="email"
+              value={formValues.email}
+              required
+            />
+          </div>
+          <Button
+            className="signin-btn"
+            disabled={!formValues.username || !formValues.email}
+          >
+            Sign In <FontAwesomeIcon icon={faArrowRight} />
+          </Button>
+          <div className="link-switch">
+            <Link className="link signLink" to="/signup">
+              Don't have an account?
+            </Link>
+          </div>
+        </form>
       </div>
     </div>
   )

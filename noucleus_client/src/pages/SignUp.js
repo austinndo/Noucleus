@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { URL } from '../Globals'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -19,6 +18,7 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    let res = await axios.post(`${URL}/genes`)
     // axios post users
     // name :
     // username :
@@ -32,7 +32,7 @@ const SignUp = () => {
     //   passwordDigest: 'crispr',
     //   affiliation: ''
     // })
-    // navigate()
+    navigate('/genes')
   }
 
   return (
