@@ -1,34 +1,59 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import { Card, Pagination } from 'react-rainbow-components'
 import SidebarComp from '../components/SidebarComp'
 
 const URL = process.env.REACT_APP_API_URL
 
-const Genes = () => {
-  const [genes, setGenes] = useState([])
+const Genes = ({ genes, sidebarPage, setSidebarPage }) => {
+  const [pageState, setPageState] = useState({ activePage: 1 })
+
+  const getContent = ({ genes }) => {
+    const { activePage } = pageState
+    const lastItem = activePage * 2
+    const firstItem = lastItem - 2
+    return genes
+      .slice(firstItem, lastItem)
+      .map(({ name, species, image_ref }) => (
+        <Card className="GeneCard" key={name}>
+          <h2>
+            {name} ({species})
+          </h2>
+          <img src={image_ref} />
+        </Card>
+      ))
+  }
 
   useEffect(() => {
-    const getGenes = async () => {
-      let res = await axios.get(`${URL}/genes`)
-      setGenes(res.data)
-      console.log(res.data)
-      console.log(res.data[3].gene_guides[1].user)
-    }
-    getGenes()
+    setSidebarPage('Genes')
   }, [])
 
-  return (
+  const handleOnChange = (event, page) => {
+    setPageState({ activePage: page })
+  }
+
+  const { activePage } = pageState
+
+  return genes != null ? (
     <div className="GenePage">
-      <h1>Noucleus App</h1>
-      {genes.map((gene) => (
-        <div key={gene.id}>
-          <h2>{gene.name}</h2>
-          <h2>{gene.function}</h2>
-          <h2>Guide Designs: </h2>
-          <h2>{gene.gene_guides.map((guide) => guide.sequence)}</h2>
-        </div>
-      ))}
+      {/* Gene search */}
+
+      {/* Gene cards */}
+      <div className="sidebar">
+        <SidebarComp sidebarPage={sidebarPage} />
+      </div>
+      <div>{getContent({ genes })}</div>
+      <div>
+        <Pagination
+          pages={5}
+          activePage={activePage}
+          onChange={handleOnChange}
+          variant="shaded"
+        />
+      </div>
     </div>
+  ) : (
+    <h2>Loading genes...</h2>
   )
 }
 

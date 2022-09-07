@@ -1,17 +1,16 @@
 import axios from 'axios'
-import SidebarComp from '../components/SidebarComp'
 import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { Button, Input } from 'react-rainbow-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import SidebarComp from '../components/SidebarComp'
 
 const URL = process.env.REACT_APP_API_URL
 
-const SignIn = () => {
+const SignIn = ({ user, setUser, sidebarPage, setSidebarPage }) => {
   let navigate = useNavigate()
   const [allUsers, setAllUsers] = useState([])
-  const [user, setUser] = useState([])
   const [formValues, setFormValues] = useState({ username: '', email: '' })
 
   const handleChange = (e) => {
@@ -39,10 +38,14 @@ const SignIn = () => {
       setAllUsers(res.data)
     }
     getAllUsers()
+    setSidebarPage('Sign In')
   }, [])
 
   return (
     <div className="SignInPage">
+      <div className="sidebar">
+        <SidebarComp sidebarPage={sidebarPage} />
+      </div>
       <div className="signInContainer">
         <form className="signin-form" onSubmit={handleSubmit}>
           <h1>Sign In</h1>

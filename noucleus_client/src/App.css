@@ -21,11 +21,32 @@ body {
   width: 12vw;
 }
 
-.GenePage, .SignInPage {
+.selectedSidebarPage button {
+  background-color: rgb(150, 150, 190);
+}
+
+#sidebar-1 button:hover {
+  background-color: rgb(150, 150, 190);
+}
+
+.SignInPage {
   display: flex;
   flex-direction: row;
 }
 
+.GenePage {
+  display: flex;
+  flex-direction: row;
+}
+
+.GeneCard {
+  width: 60%;
+  height: 50%;
+}
+
+.GeneCard img{
+  width: 100%;
+}
 
 .fontIcon {
   margin-left: 10px;

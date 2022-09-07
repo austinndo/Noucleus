@@ -12,24 +12,58 @@ const URL = process.env.REACT_APP_API_URL
 
 const App = () => {
   const [user, setUser] = useState(null)
-  const [signedIn, setSignedIn] = useState(false)
+  const [allUsers, setAllUsers] = useState(null)
+  const [genes, setGenes] = useState(null)
+  const [sidebarPage, setSidebarPage] = useState('Genes')
+
+  useEffect(() => {
+    const getGenes = async () => {
+      let res = await axios.get(`${URL}/genes`)
+      setGenes(res.data)
+    }
+    const getAllUsers = async () => {
+      let res = await axios.get(`${URL}/users`)
+      setAllUsers(res.data)
+      console.log(res.data)
+    }
+    getGenes()
+    getAllUsers()
+  }, [])
 
   return (
     <div className="App">
       <Header user={user} />
       <div className="Noucleus">
-        <div className="sidebar">
-          <SidebarComp user={user} />
-        </div>
         <div>
           <Routes>
-            <Route path="/" element={<Genes />} />
-            <Route path="/signin" element={<SignIn />} />
+            <Route
+              path="/"
+              element={
+                <Genes
+                  genes={genes}
+                  user={user}
+                  sidebarPage={sidebarPage}
+                  setSidebarPage={setSidebarPage}
+                />
+              }
+            />
+            <Route
+              path="/signin"
+              element={
+                <SignIn
+                  user={user}
+                  setUser={setUser}
+                  allUsers={allUsers}
+                  sidebarPage={sidebarPage}
+                  setSidebarPage={setSidebarPage}
+                />
+              }
+            />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/dashboard" element={<Genes />} />
-            <Route path="/designs" element={<Genes />} />
-            <Route path="/analytics" element={<Genes />} />
-            <Route path="/glossary" element={<Genes />} />
+            <Route path="/dashboard" />
+            <Route path="/designs" />
+            <Route path="/analytics" />
+            <Route path="/glossary" />
           </Routes>
         </div>
       </div>
