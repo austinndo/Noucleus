@@ -1,12 +1,12 @@
 import React from 'react'
 import { Sidebar, SidebarItem } from 'react-rainbow-components'
 
-const SidebarComp = () => {
+const SidebarComp = ({ user }) => {
   class SimpleSidebar extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
-        selectedItem: 'GettingStarted'
+        selectedItem: 'Genes'
       }
       this.handleOnSelect = this.handleOnSelect.bind(this)
     }
@@ -18,19 +18,38 @@ const SidebarComp = () => {
     render() {
       const { selectedItem } = this.state
 
-      return (
+      const userSidebar = (
         <Sidebar
           selectedItem={selectedItem}
           onSelect={this.handleOnSelect}
           id="sidebar-1"
         >
           <SidebarItem name="Dashboard" label="Dashboard" />
-          <SidebarItem name="Aplications" label="Applications" />
-          <SidebarItem name="Components" label="Components" />
-          <SidebarItem name="Messages" label="Messages" />
-          <SidebarItem name="Charts" label="Charts" />
+          <SidebarItem name="Genes" label="Genes" />
+          <SidebarItem name="Designs" label="Designs" />
+          <SidebarItem name="Analytics" label="Analytics" />
+          <SidebarItem name="Glossary" label="Glossary" />
         </Sidebar>
       )
+
+      const publicSidebar = (
+        <Sidebar
+          selectedItem={selectedItem}
+          onSelect={this.handleOnSelect}
+          id="sidebar-1"
+        >
+          <SidebarItem name="Sign In" label="Sign In" />
+          <SidebarItem name="Genes" label="Genes" />
+          <SidebarItem name="Designs" label="Designs" />
+          <SidebarItem name="Analytics" label="Analytics" />
+          <SidebarItem name="Glossary" label="Glossary" />
+        </Sidebar>
+      )
+
+      //////////////////////
+      ////Remove bang op when user state is successfully set/////
+      //////////////////////
+      return !{ user } ? userSidebar : publicSidebar
     }
   }
 

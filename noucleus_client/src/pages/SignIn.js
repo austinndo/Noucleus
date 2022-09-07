@@ -42,8 +42,7 @@ const SignIn = () => {
   }, [])
 
   return (
-    <div className="signInPage">
-      <SidebarComp />
+    <div className="SignInPage">
       <div className="signInContainer">
         <form className="signin-form" onSubmit={handleSubmit}>
           <h1>Sign In</h1>

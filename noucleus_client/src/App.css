@@ -1,6 +1,9 @@
 .Noucleus {
   text-align: center;
+  display: flex;
+  flex-direction: row;
 }
+
 
 body {
   margin: 0 auto;
@@ -8,6 +11,21 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
+.header {
+  height: 100%;
+}
+
+.sidebar {
+  margin-left: 0 auto;
+  width: 12vw;
+}
+
+.GenePage, .SignInPage {
+  display: flex;
+  flex-direction: row;
+}
+
 
 .fontIcon {
   margin-left: 10px;

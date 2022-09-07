@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import SidebarComp from '../components/SidebarComp'
 
 const URL = process.env.REACT_APP_API_URL
 
@@ -17,7 +18,7 @@ const Genes = () => {
   }, [])
 
   return (
-    <div>
+    <div className="GenePage">
       <h1>Noucleus App</h1>
       {genes.map((gene) => (
         <div key={gene.id}>
