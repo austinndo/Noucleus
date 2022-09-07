@@ -1,8 +1,9 @@
 import axios from 'axios'
+import SidebarComp from '../components/SidebarComp'
 import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { Button, Input } from 'react-rainbow-components'
-import { FontAwesomeIcon } from '@fortawesome/react-fortawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 const URL = process.env.REACT_APP_API_URL
@@ -42,6 +43,7 @@ const SignIn = () => {
 
   return (
     <div className="signInPage">
+      <SidebarComp />
       <div className="signInContainer">
         <form className="signin-form" onSubmit={handleSubmit}>
           <h1>Sign In</h1>
@@ -69,7 +71,8 @@ const SignIn = () => {
             className="signin-btn"
             disabled={!formValues.username || !formValues.email}
           >
-            Sign In <FontAwesomeIcon icon={faArrowRight} />
+            Sign In
+            <FontAwesomeIcon icon={faArrowRight} className="fontIcon" />
           </Button>
           <div className="link-switch">
             <Link className="link signLink" to="/signup">

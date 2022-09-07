@@ -9,6 +9,10 @@ body {
   background-attachment: fixed;
 }
 
+.fontIcon {
+  margin-left: 10px;
+}
+
 .App-link {
   color: #61dafb;
 }
