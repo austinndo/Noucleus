@@ -103,7 +103,7 @@ const App = () => {
               }
             />
             <Route
-              path="/designs/:editType"
+              path="/designs/editType"
               element={
                 <GuidesByEdit guides={guides} setSidebarPage={setSidebarPage} />
               }
