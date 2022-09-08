@@ -7,9 +7,13 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 const URL = process.env.REACT_APP_API_URL
 
-const SignIn = ({ user, setUser, sidebarPage, setSidebarPage }) => {
+const SignIn = ({ allUsers, user, setUser, setSidebarPage }) => {
   let navigate = useNavigate()
-  const [allUsers, setAllUsers] = useState([])
+
+  useEffect(() => {
+    setSidebarPage('Sign In')
+  }, [])
+
   const [formValues, setFormValues] = useState({ username: '', email: '' })
 
   const handleChange = (e) => {
@@ -18,31 +22,31 @@ const SignIn = ({ user, setUser, sidebarPage, setSidebarPage }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    console.log('form submitted')
     // const payload = await SignInUser(formValues)
-    setFormValues({ username: '', email: '' })
-    //If username and email is in the user table, set user to the user array/object
-    // if (payload.isHunter === true) {
-    //   navigate('/feed')
-    // } else {
-    //   navigate('/profile')
-    //
-    //
-  }
 
-  useEffect(() => {
-    const getAllUsers = async () => {
-      let res = await axios.get(`${URL}/users`)
-      console.log(res.data)
-      console.log(res.data.map((s) => s.user_guides))
-      setAllUsers(res.data)
-    }
-    getAllUsers()
-    setSidebarPage('Sign In')
-  }, [])
+    allUsers.map((users) => {
+      if (
+        formValues.username === users.username &&
+        formValues.email === users.email
+      ) {
+        console.log('We found a match!')
+        setUser(users)
+        setFormValues({ username: '', email: '' })
+      }
+      if (users != null) {
+        navigate('/dashboard')
+      } else if (users === null) {
+        console.log('No match found')
+        setFormValues({ username: '', email: '' })
+        //modal "Username or email not found"
+      }
+    })
+  }
 
   return (
     <div className="SignInPage">
-      <form className="signin-form" onSubmit={handleSubmit}>
+      <form className="signin-form">
         <h1>Sign In</h1>
         <div className="input">
           <Input
@@ -67,16 +71,17 @@ const SignIn = ({ user, setUser, sidebarPage, setSidebarPage }) => {
         <Button
           className="signin-btn"
           disabled={!formValues.username || !formValues.email}
+          onClick={handleSubmit}
         >
           Sign In
           <FontAwesomeIcon icon={faArrowRight} className="fontIcon" />
         </Button>
-        <div className="link-switch">
-          <Link className="link signLink" to="/signup">
-            Don't have an account?
-          </Link>
-        </div>
       </form>
+      <div className="link-switch">
+        <Link className="link signLink" to="/signup">
+          Don't have an account?
+        </Link>
+      </div>
     </div>
   )
 }

@@ -46,7 +46,7 @@ const App = () => {
       <Header user={user} />
       <div className="Noucleus">
         <div className="sidebar">
-          <SidebarComp sidebarPage={sidebarPage} />
+          <SidebarComp user={user} sidebarPage={sidebarPage} />
         </div>
         <div className="content">
           <Routes>
@@ -77,7 +77,13 @@ const App = () => {
             />
             <Route
               path="/dashboard"
-              element={<Dashboard setSidebarPage={setSidebarPage} />}
+              element={
+                <Dashboard
+                  user={user}
+                  setUser={setUser}
+                  setSidebarPage={setSidebarPage}
+                />
+              }
             />
             <Route
               path="/designs"

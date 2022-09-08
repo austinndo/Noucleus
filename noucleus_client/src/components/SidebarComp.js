@@ -129,7 +129,7 @@ const SidebarComp = ({ user, sidebarPage }) => {
       //////////////////////
       ////Remove bang op when user state is successfully set/////
       //////////////////////
-      return !{ user } ? userSidebar : publicSidebar
+      return user != null ? userSidebar : publicSidebar
     }
   }
 
