@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Card, Pagination } from 'react-rainbow-components'
+import { useNavigate } from 'react-router-dom'
 
 const Genes = ({ genes, setSidebarPage }) => {
+  let navigate = useNavigate()
+
   const [pageState, setPageState] = useState({ activePage: 1 })
 
   useEffect(() => {
@@ -14,11 +17,15 @@ const Genes = ({ genes, setSidebarPage }) => {
     const firstItem = lastItem - 2
     return genes
       .slice(firstItem, lastItem)
-      .map(({ name, species, image_ref }) => (
-        <Card className="GeneCard" key={name}>
+      .map(({ id, name, species, image_ref }) => (
+        <div
+          className="GeneCard"
+          key={name}
+          onClick={() => navigate(`/gene:${id}`)}
+        >
           <h2>{name}</h2>
           <img src={image_ref} />
-        </Card>
+        </div>
       ))
   }
 
@@ -31,15 +38,15 @@ const Genes = ({ genes, setSidebarPage }) => {
   return genes != null ? (
     <div className="GenePage">
       {/* Gene search */}
-
-      {getGenes({ genes })}
-
-      <Pagination
-        pages={5}
-        activePage={activePage}
-        onChange={handleOnChange}
-        variant="shaded"
-      />
+      <div className="GeneCardContainer">{getGenes({ genes })}</div>
+      <div className="PaginationContainer">
+        <Pagination
+          pages={5}
+          activePage={activePage}
+          onChange={handleOnChange}
+          variant="shaded"
+        />
+      </div>
     </div>
   ) : (
     <div className="GenePage">

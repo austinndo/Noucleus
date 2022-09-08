@@ -7,6 +7,7 @@ import Header from './components/Header'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Genes from './pages/Genes'
+import GeneDetail from './pages/GeneDetail'
 import Guides from './pages/Guides'
 import Dashboard from './pages/Dashboard'
 import Analytics from './pages/Analytics'
@@ -46,10 +47,14 @@ const App = () => {
           <Routes>
             <Route
               path="/"
+              element={<Genes genes={genes} setSidebarPage={setSidebarPage} />}
+            />
+            <Route
+              path="/:geneId"
               element={
-                <Genes
+                <GeneDetail
                   genes={genes}
-                  user={user}
+                  setGenes={setGenes}
                   setSidebarPage={setSidebarPage}
                 />
               }
