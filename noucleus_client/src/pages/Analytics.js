@@ -13,7 +13,10 @@ const Analytics = ({ setSidebarPage, guides }) => {
         {guides.map((guide) => (
           <div className="AnalyticsCard" key={guide.id}>
             <h2>Designer: {guide.user}</h2>
-            <ProgressCircular value={guide.percent_gc} variant="success" />
+            <ProgressCircular
+              value={guide.percent_gc}
+              variant={guide.percent_gc > 40 ? 'success' : 'brand'}
+            />
             <h1 className="rainbow-font-size-heading_small rainbow-color_gray-3">
               Percent GC
             </h1>
