@@ -74,7 +74,7 @@ const GuidesTable = ({ guides }) => {
   } else {
     return (
       <div>
-        <h2>Guides loading...</h2>
+        <GuidesTableComp />
       </div>
     )
   }

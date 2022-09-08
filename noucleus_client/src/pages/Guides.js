@@ -8,15 +8,16 @@ const Guides = ({ guides, setSidebarPage }) => {
   let navigate = useNavigate()
 
   const [guidesByEdit, setGuidesByEdit] = useState(null)
+  const [selectedEdit, setSelectedEdit] = useState(null)
 
   useEffect(() => {
     setSidebarPage('Designs')
   }, [])
 
-  const popTable = (selectedEdit) => {
+  const popTable = (editType) => {
     let guideProps = []
     guides.map((guideObj) => {
-      if (guideObj.edit_type === selectedEdit) {
+      if (guideObj.edit_type === editType) {
         guideProps.push(guideObj)
       }
     })
@@ -29,23 +30,55 @@ const Guides = ({ guides, setSidebarPage }) => {
       <div>Choose Edit Type here</div>
       <div className="VisualPickerContainer">
         <div
-          className="VisualPickerCard"
+          className={
+            selectedEdit === 'disruption'
+              ? 'VisualPickerCardSelected'
+              : 'VisualPickerCard'
+          }
           onClick={() => {
             popTable('disruption')
+            setSelectedEdit('disruption')
           }}
         >
           <FontAwesomeIcon icon={faDna} /> Disruption
         </div>
-        <div className="VisualPickerCard" onClick={() => popTable('deletion')}>
+        <div
+          className={
+            selectedEdit === 'deletion'
+              ? 'VisualPickerCardSelected'
+              : 'VisualPickerCard'
+          }
+          onClick={() => {
+            popTable('deletion')
+            setSelectedEdit('deletion')
+          }}
+        >
           <FontAwesomeIcon icon={faDna} /> Deletion{' '}
         </div>
         <div
-          className="VisualPickerCard"
-          onClick={() => popTable('correction')}
+          className={
+            selectedEdit === 'correction'
+              ? 'VisualPickerCardSelected'
+              : 'VisualPickerCard'
+          }
+          onClick={() => {
+            popTable('correction')
+            setSelectedEdit('correction')
+          }}
         >
           <FontAwesomeIcon icon={faDna} /> Correction
         </div>
-        <div className="VisualPickerCard" onClick={() => popTable('insertion')}>
+        <div
+          className={
+            selectedEdit === 'insertion'
+              ? 'VisualPickerCardSelected'
+              : 'VisualPickerCard'
+          }
+          onClick={() => {
+            popTable('insertion')
+            setSelectedEdit('insertion')
+          }}
+        >
           <FontAwesomeIcon icon={faDna} /> Insertion{' '}
         </div>
       </div>

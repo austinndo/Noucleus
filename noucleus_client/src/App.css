@@ -60,6 +60,25 @@ body {
   position: fixed;
 } */
 
+.VisualPickerContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.VisualPickerCard {
+  background-color: grey;
+  display: flex;
+  flex-direction: column;
+}
+
+.VisualPickerCardSelected {
+  background-color: green;
+  display: flex;
+  flex-direction: column;
+}
+
 .fontIcon {
   margin-left: 10px;
 }
