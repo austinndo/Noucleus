@@ -9,6 +9,7 @@ import SignUp from './pages/SignUp'
 import Genes from './pages/Genes'
 import GeneDetail from './pages/GeneDetail'
 import Guides from './pages/Guides'
+import GuidesByTarget from './pages/GuidesByTarget'
 import Dashboard from './pages/Dashboard'
 import Analytics from './pages/Analytics'
 import Glossary from './pages/Glossary'
@@ -89,6 +90,15 @@ const App = () => {
               path="/designs"
               element={
                 <Guides guides={guides} setSidebarPage={setSidebarPage} />
+              }
+            />
+            <Route
+              path="/designs/:designTargetId"
+              element={
+                <GuidesByTarget
+                  guides={guides}
+                  setSidebarPage={setSidebarPage}
+                />
               }
             />
             <Route
