@@ -26,18 +26,12 @@ const App = () => {
       let res = await axios.get(`${URL}/genes`)
       setGenes(res.data)
     }
-    const getAllUsers = async () => {
-      let res = await axios.get(`${URL}/users`)
-      setAllUsers(res.data)
-      console.log(res.data)
-    }
     const getGuides = async () => {
       let res = await axios.get(`${URL}/guides`)
       setGuides(res.data)
       console.log(res.data)
     }
     getGenes()
-    getAllUsers()
     getGuides()
   }, [])
 
@@ -67,6 +61,7 @@ const App = () => {
                   user={user}
                   setUser={setUser}
                   allUsers={allUsers}
+                  setAllUsers={setAllUsers}
                   setSidebarPage={setSidebarPage}
                 />
               }

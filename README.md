@@ -16,6 +16,8 @@
 
 #### ** For educational purposes ONLY. Sequences stored in this app are not verified sgRNA designs and should not be referenced for actual edits. **
 
+#### Currently the default value of passwordDigest in user model is 'crispr.' Will update with hashed passwords once user auth is implemented.
+
 ---
 
 ## **_Project Development_**

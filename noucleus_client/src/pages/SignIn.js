@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { Button, Input } from 'react-rainbow-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,41 +7,39 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 const URL = process.env.REACT_APP_API_URL
 
-const SignIn = ({ allUsers, user, setUser, setSidebarPage }) => {
+const SignIn = ({ allUsers, setAllUsers, user, setUser, setSidebarPage }) => {
   let navigate = useNavigate()
 
   useEffect(() => {
+    const getAllUsers = async () => {
+      let res = await axios.get(`${URL}/users`)
+      setAllUsers(res.data)
+      console.log(res.data)
+    }
+    getAllUsers()
     setSidebarPage('Sign In')
   }, [])
 
   const [formValues, setFormValues] = useState({ username: '', email: '' })
-
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('form submitted')
-    // const payload = await SignInUser(formValues)
-
     allUsers.map((users) => {
       if (
         formValues.username === users.username &&
         formValues.email === users.email
       ) {
-        console.log('We found a match!')
         setUser(users)
-        setFormValues({ username: '', email: '' })
-      }
-      if (users != null) {
-        navigate('/dashboard')
-      } else if (users === null) {
-        console.log('No match found')
-        setFormValues({ username: '', email: '' })
-        //modal "Username or email not found"
       }
     })
+
+    setFormValues({ username: '', email: '' })
+    if (user != null) {
+      navigate('/dashboard')
+    }
   }
 
   return (
