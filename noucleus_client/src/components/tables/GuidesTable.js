@@ -49,7 +49,6 @@ const GuidesTable = ({ guides }) => {
             <Column header="GC Content" field="percent_gc" sortable />
             <Column header="Efficiency" field="efficiency" sortable />
             <Column header="Strand" field="strand" sortable />
-            <Column header="Edit" field="edit_type" sortable />
             <Column type="action">
               <MenuItem
                 label="Clone"
