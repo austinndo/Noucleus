@@ -8,7 +8,7 @@ import {
   Select
 } from 'react-rainbow-components'
 
-const GuidesTable = ({ guides, user }) => {
+const UserGuidesTable = ({ guides, user }) => {
   const casOptions = [
     { value: 'SpCas9', label: 'SpCas9' },
     { value: 'SaCas9', label: 'SaCas9' },
@@ -33,6 +33,7 @@ const GuidesTable = ({ guides, user }) => {
     cas: '',
     edit_type: ''
   })
+
   const handleChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value })
   }
@@ -86,11 +87,11 @@ const GuidesTable = ({ guides, user }) => {
             <Column header="Strand" field="strand" sortable />
             <Column type="action">
               <MenuItem
-                label="Clone"
+                label="Edit"
                 onClick={(event, data) => console.log(`open modal`)}
               />
               <MenuItem
-                label="See Details"
+                label="Delete"
                 onClick={(event, data) => console.log(`${data.sequence}`)}
               />
             </Column>
@@ -123,8 +124,20 @@ const GuidesTable = ({ guides, user }) => {
           <Select
             onChange={handleChange}
             name="cas"
-            placeholder="SpCas9"
+            placeholder="Cas"
             options={casOptions}
+          />
+          <Select
+            onChange={handleChange}
+            name="strand"
+            placeholder="strand"
+            options={strandOptions}
+          />
+          <Select
+            onChange={handleChange}
+            name="edit_type"
+            placeholder="type of edit"
+            options={editOptions}
           />
           <Textarea
             onChange={handleChange}
@@ -146,4 +159,4 @@ const GuidesTable = ({ guides, user }) => {
   }
 }
 
-export default GuidesTable
+export default UserGuidesTable

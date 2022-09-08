@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import UserGuidesTable from '../components/tables/UserGuidesTable'
 
 const Dashboard = ({ setSidebarPage, user, setUser }) => {
   let navigate = useNavigate()
@@ -18,14 +19,13 @@ const Dashboard = ({ setSidebarPage, user, setUser }) => {
       >
         Sign Out
       </button>
+      {/* {user.user_guides.map((guide) => (
+
+      ))} */}
       <h2>{user.name}</h2>
       <h2>{user.email}</h2>
       <h2>{user.affiliation}</h2>
-      <ul>
-        {user.user_guides.map((guide) => (
-          <li key={guide.id}>{guide.sequence}</li>
-        ))}
-      </ul>
+      <UserGuidesTable guides={user.user_guides} />
     </div>
   )
 }
