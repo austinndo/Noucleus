@@ -1,7 +1,30 @@
-import React from 'react'
-import { Table, Column, MenuItem } from 'react-rainbow-components'
+import React, { useState } from 'react'
+import {
+  Table,
+  Column,
+  MenuItem,
+  Input,
+  Textarea,
+  Select
+} from 'react-rainbow-components'
 
-const GuidesTable = ({ guides }) => {
+const GuidesTable = ({ guides, user }) => {
+  const casOptions = ['SpCas9', 'SaCas9', 'Cas12a (Cpf1)']
+  const strandOptions = ['+', '-']
+  const editOptions = ['disruption', 'deletion', 'correction', 'insertion']
+
+  const [formValues, setFormValues] = useState({
+    gene: '',
+    username: '',
+    sequence: '',
+    strand: '',
+    cas: '',
+    edit_type: ''
+  })
+  const handleChange = (e) => {
+    setFormValues({ ...formValues, [e.target.name]: e.target.value })
+  }
+
   class GuidesTableComp extends React.Component {
     constructor(props) {
       super(props)
@@ -68,6 +91,37 @@ const GuidesTable = ({ guides }) => {
   if (guides) {
     return (
       <div>
+        <form className="DesignForm">
+          <Input
+            onChange={handleChange}
+            name="gene"
+            type="text"
+            placeholder="gene target"
+            value={formValues.gene}
+            required
+          />
+          <Input
+            onChange={handleChange}
+            name="user"
+            type="text"
+            placeholder="username"
+            value={formValues.username}
+            required
+          />
+          <Select
+            onChange={handleChange}
+            name="cas"
+            placeholder="SpCas9"
+            options={casOptions}
+          />
+          <Textarea
+            onChange={handleChange}
+            name="sequence"
+            placeholder="design sequence"
+            value={formValues.sequence}
+            required
+          />
+        </form>
         <GuidesTableComp guides={guides} />
       </div>
     )

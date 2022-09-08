@@ -8,22 +8,21 @@ const Guides = ({ guides, setSidebarPage }) => {
   let navigate = useNavigate()
 
   const [guidesByEdit, setGuidesByEdit] = useState(null)
-  const [selectedEdit, setSelectedEdit] = useState(null)
+  const [selectedEdit, setSelectedEdit] = useState('disruption')
 
-  useEffect(() => {
-    setSidebarPage('Designs')
-  }, [])
-
-  const popTable = (editType) => {
+  const populateTable = (editType) => {
     let guideProps = []
     guides.map((guideObj) => {
       if (guideObj.edit_type === editType) {
         guideProps.push(guideObj)
       }
     })
-    console.log(guideProps)
     setGuidesByEdit(guideProps)
   }
+  useEffect(() => {
+    setSidebarPage('Designs')
+    populateTable(selectedEdit)
+  }, [])
 
   const guidesTrue = (
     <div>
@@ -36,7 +35,7 @@ const Guides = ({ guides, setSidebarPage }) => {
               : 'VisualPickerCard'
           }
           onClick={() => {
-            popTable('disruption')
+            populateTable('disruption')
             setSelectedEdit('disruption')
           }}
         >
@@ -49,7 +48,7 @@ const Guides = ({ guides, setSidebarPage }) => {
               : 'VisualPickerCard'
           }
           onClick={() => {
-            popTable('deletion')
+            populateTable('deletion')
             setSelectedEdit('deletion')
           }}
         >
@@ -62,7 +61,7 @@ const Guides = ({ guides, setSidebarPage }) => {
               : 'VisualPickerCard'
           }
           onClick={() => {
-            popTable('correction')
+            populateTable('correction')
             setSelectedEdit('correction')
           }}
         >
@@ -75,7 +74,7 @@ const Guides = ({ guides, setSidebarPage }) => {
               : 'VisualPickerCard'
           }
           onClick={() => {
-            popTable('insertion')
+            populateTable('insertion')
             setSelectedEdit('insertion')
           }}
         >

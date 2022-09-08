@@ -79,6 +79,11 @@ body {
   flex-direction: column;
 }
 
+.AnalyticsCard {
+  display: flex;
+  flex-direction: row;
+}
+
 .fontIcon {
   margin-left: 10px;
 }
