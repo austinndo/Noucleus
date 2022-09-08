@@ -56,6 +56,8 @@
 
 #### React Icons : [NPMJS](https://www.npmjs.com/package/react-icons)
 
+#### Font Awesome
+
 #### NCBI :
 
 #### React Rainbow 

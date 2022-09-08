@@ -1,6 +1,15 @@
 import React from 'react'
 import { Sidebar, SidebarItem } from 'react-rainbow-components'
 import { useNavigate } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faDna,
+  faHouse,
+  faScissors,
+  faChartPie,
+  faBook,
+  faRightToBracket
+} from '@fortawesome/free-solid-svg-icons'
 
 const SidebarComp = ({ user, sidebarPage }) => {
   let navigate = useNavigate()
@@ -26,6 +35,7 @@ const SidebarComp = ({ user, sidebarPage }) => {
           id="sidebar-1"
         >
           <SidebarItem
+            icon={<FontAwesomeIcon icon={faHouse} />}
             name="Dashboard"
             label="Dashboard"
             className={
@@ -34,18 +44,21 @@ const SidebarComp = ({ user, sidebarPage }) => {
             onClick={() => navigate('/dashboard')}
           />
           <SidebarItem
+            icon={<FontAwesomeIcon icon={faDna} />}
             name="Genes"
             label="Genes"
             className={sidebarPage === 'Genes' ? 'selectedSidebarPage' : null}
             onClick={() => navigate('/')}
           />
           <SidebarItem
+            icon={<FontAwesomeIcon icon={faScissors} />}
             name="Designs"
             label="Designs"
             className={sidebarPage === 'Designs' ? 'selectedSidebarPage' : null}
             onClick={() => navigate('/designs')}
           />
           <SidebarItem
+            icon={<FontAwesomeIcon icon={faChartPie} />}
             name="Analytics"
             label="Analytics"
             className={
@@ -54,6 +67,7 @@ const SidebarComp = ({ user, sidebarPage }) => {
             onClick={() => navigate('/analytics')}
           />
           <SidebarItem
+            icon={<FontAwesomeIcon icon={faBook} />}
             name="Glossary"
             label="Glossary"
             className={
@@ -71,24 +85,28 @@ const SidebarComp = ({ user, sidebarPage }) => {
           id="sidebar-1"
         >
           <SidebarItem
+            icon={<FontAwesomeIcon icon={faRightToBracket} />}
             name="Sign In"
             className={sidebarPage === 'Sign In' ? 'selectedSidebarPage' : null}
             label="Sign In"
             onClick={() => navigate('/signin')}
           />
           <SidebarItem
+            icon={<FontAwesomeIcon icon={faDna} />}
             name="Genes"
             className={sidebarPage === 'Genes' ? 'selectedSidebarPage' : null}
             label="Genes"
             onClick={() => navigate('/')}
           />
           <SidebarItem
+            icon={<FontAwesomeIcon icon={faScissors} />}
             name="Designs"
             label="Designs"
             className={sidebarPage === 'Designs' ? 'selectedSidebarPage' : null}
             onClick={() => navigate('/designs')}
           />
           <SidebarItem
+            icon={<FontAwesomeIcon icon={faChartPie} />}
             name="Analytics"
             label="Analytics"
             className={
@@ -97,6 +115,7 @@ const SidebarComp = ({ user, sidebarPage }) => {
             onClick={() => navigate('/analytics')}
           />
           <SidebarItem
+            icon={<FontAwesomeIcon icon={faBook} />}
             name="Glossary"
             label="Glossary"
             className={
