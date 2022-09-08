@@ -50,7 +50,7 @@ const App = () => {
               element={<Genes genes={genes} setSidebarPage={setSidebarPage} />}
             />
             <Route
-              path="/:geneId"
+              path="/gene/:geneId"
               element={
                 <GeneDetail
                   genes={genes}

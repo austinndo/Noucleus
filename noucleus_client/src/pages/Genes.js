@@ -17,11 +17,11 @@ const Genes = ({ genes, setSidebarPage }) => {
     const firstItem = lastItem - 2
     return genes
       .slice(firstItem, lastItem)
-      .map(({ id, name, species, image_ref }) => (
+      .map(({ id, name, species, image_ref }, index) => (
         <div
           className="GeneCard"
-          key={name}
-          onClick={() => navigate(`/gene:${id}`)}
+          key={id}
+          onClick={() => navigate(`/gene/${index}`)}
         >
           <h2>{name}</h2>
           <img src={image_ref} />

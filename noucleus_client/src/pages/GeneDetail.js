@@ -4,37 +4,33 @@ import { useState, useEffect } from 'react'
 
 const GeneDetail = ({ genes, setGenes, setSidebarPage }) => {
   let { geneId } = useParams()
+  let selected = genes[geneId]
 
   const [selectedGene, setSelectedGene] = useState(null)
 
-  useEffect(() => {
-    const getGenes = async () => {
-      let res = await axios.get(`${URL}/genes`)
-      setGenes(res.data)
-    }
+  // const assignGene = () => {
+  //   console.log(geneId)
+  //   genes.map((gene) => {
+  //     if (gene.id === { geneId }) {
+  //       setSelectedGene(gene)
+  //     }
+  //   })
+  // }
 
-    const renderGene = () => {
-      genes.map((clickedGene) => {
-        if (clickedGene.id === geneId) {
-          setSelectedGene(clickedGene)
-        }
-      })
-    }
+  useEffect(() => {
     setSidebarPage('Genes')
-    getGenes()
-    renderGene()
+    setSelectedGene(selected)
+    // assignGene()
   }, [])
 
   if (selectedGene != null) {
     return (
       <div>
         <h2>Gene Detail, gene found</h2>
-        {selectedGene.map((gene) => (
-          <div key={gene.id}>
-            <h2>{gene.name}</h2>
-            <h2>{gene.function}</h2>
-          </div>
-        ))}
+        <div key={selectedGene.id}>
+          <h2>{selectedGene.name}</h2>
+          <h2>{selectedGene.function}</h2>
+        </div>
       </div>
     )
   } else {
