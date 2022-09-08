@@ -4,7 +4,6 @@ import { useNavigate, Link } from 'react-router-dom'
 import { Button, Input } from 'react-rainbow-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import SidebarComp from '../components/SidebarComp'
 
 const URL = process.env.REACT_APP_API_URL
 
@@ -43,46 +42,41 @@ const SignIn = ({ user, setUser, sidebarPage, setSidebarPage }) => {
 
   return (
     <div className="SignInPage">
-      <div className="sidebar">
-        <SidebarComp sidebarPage={sidebarPage} />
-      </div>
-      <div className="signInContainer">
-        <form className="signin-form" onSubmit={handleSubmit}>
-          <h1>Sign In</h1>
-          <div className="input-wrapper">
-            <Input
-              onChange={handleChange}
-              name="username"
-              type="text"
-              placeholder="username"
-              value={formValues.username}
-              required
-            />
-          </div>
-          <div className="input-wrapper">
-            <Input
-              onChange={handleChange}
-              name="email"
-              type="text"
-              placeholder="email"
-              value={formValues.email}
-              required
-            />
-          </div>
-          <Button
-            className="signin-btn"
-            disabled={!formValues.username || !formValues.email}
-          >
-            Sign In
-            <FontAwesomeIcon icon={faArrowRight} className="fontIcon" />
-          </Button>
-          <div className="link-switch">
-            <Link className="link signLink" to="/signup">
-              Don't have an account?
-            </Link>
-          </div>
-        </form>
-      </div>
+      <form className="signin-form" onSubmit={handleSubmit}>
+        <h1>Sign In</h1>
+        <div className="input">
+          <Input
+            onChange={handleChange}
+            name="username"
+            type="text"
+            placeholder="username"
+            value={formValues.username}
+            required
+          />
+        </div>
+        <div className="input">
+          <Input
+            onChange={handleChange}
+            name="email"
+            type="text"
+            placeholder="email"
+            value={formValues.email}
+            required
+          />
+        </div>
+        <Button
+          className="signin-btn"
+          disabled={!formValues.username || !formValues.email}
+        >
+          Sign In
+          <FontAwesomeIcon icon={faArrowRight} className="fontIcon" />
+        </Button>
+        <div className="link-switch">
+          <Link className="link signLink" to="/signup">
+            Don't have an account?
+          </Link>
+        </div>
+      </form>
     </div>
   )
 }

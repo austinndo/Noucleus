@@ -7,6 +7,10 @@ import Header from './components/Header'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Genes from './pages/Genes'
+import Guides from './pages/Guides'
+import Dashboard from './pages/Dashboard'
+import Analytics from './pages/Analytics'
+import Glossary from './pages/Glossary'
 
 const URL = process.env.REACT_APP_API_URL
 
@@ -14,6 +18,7 @@ const App = () => {
   const [user, setUser] = useState(null)
   const [allUsers, setAllUsers] = useState(null)
   const [genes, setGenes] = useState(null)
+  const [guides, setGuides] = useState(null)
   const [sidebarPage, setSidebarPage] = useState('Genes')
 
   useEffect(() => {
@@ -26,15 +31,24 @@ const App = () => {
       setAllUsers(res.data)
       console.log(res.data)
     }
+    const getGuides = async () => {
+      let res = await axios.get(`${URL}/guides`)
+      setGuides(res.data)
+      console.log(res.data)
+    }
     getGenes()
     getAllUsers()
+    getGuides()
   }, [])
 
   return (
     <div className="App">
       <Header user={user} />
       <div className="Noucleus">
-        <div>
+        <div className="sidebar">
+          <SidebarComp sidebarPage={sidebarPage} />
+        </div>
+        <div className="content">
           <Routes>
             <Route
               path="/"
@@ -42,7 +56,6 @@ const App = () => {
                 <Genes
                   genes={genes}
                   user={user}
-                  sidebarPage={sidebarPage}
                   setSidebarPage={setSidebarPage}
                 />
               }
@@ -54,16 +67,34 @@ const App = () => {
                   user={user}
                   setUser={setUser}
                   allUsers={allUsers}
-                  sidebarPage={sidebarPage}
                   setSidebarPage={setSidebarPage}
                 />
               }
             />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/dashboard" />
-            <Route path="/designs" />
-            <Route path="/analytics" />
-            <Route path="/glossary" />
+            <Route
+              path="/signup"
+              element={<SignUp setSidebarPage={setSidebarPage} />}
+            />
+            <Route
+              path="/dashboard"
+              element={<Dashboard setSidebarPage={setSidebarPage} />}
+            />
+            <Route
+              path="/designs"
+              element={
+                <Guides guides={guides} setSidebarPage={setSidebarPage} />
+              }
+            />
+            <Route
+              path="/analytics"
+              element={
+                <Analytics guides={guides} setSidebarPage={setSidebarPage} />
+              }
+            />
+            <Route
+              path="/glossary"
+              element={<Glossary setSidebarPage={setSidebarPage} />}
+            />
           </Routes>
         </div>
       </div>

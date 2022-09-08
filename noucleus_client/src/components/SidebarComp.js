@@ -8,10 +8,7 @@ const SidebarComp = ({ user, sidebarPage }) => {
   class SimpleSidebar extends React.Component {
     constructor(props) {
       super(props)
-      this.state = {
-        selectedItem: null
-      }
-      // this.state = { selectedItem }
+      this.state = { selectedItem: null }
       this.handleOnSelect = this.handleOnSelect.bind(this)
     }
 
@@ -28,20 +25,43 @@ const SidebarComp = ({ user, sidebarPage }) => {
           onSelect={this.handleOnSelect}
           id="sidebar-1"
         >
-          <SidebarItem name="Dashboard" label="Dashboard" />
-          <SidebarItem name="Genes" label="Genes" />
-          <SidebarItem name="Designs" label="Designs" />
-          <SidebarItem name="Analytics" label="Analytics" />
-          <SidebarItem name="Glossary" label="Glossary" />
+          <SidebarItem
+            name="Dashboard"
+            label="Dashboard"
+            className={
+              sidebarPage === 'Dashboard' ? 'selectedSidebarPage' : null
+            }
+            onClick={() => navigate('/dashboard')}
+          />
+          <SidebarItem
+            name="Genes"
+            label="Genes"
+            className={sidebarPage === 'Genes' ? 'selectedSidebarPage' : null}
+            onClick={() => navigate('/')}
+          />
+          <SidebarItem
+            name="Designs"
+            label="Designs"
+            className={sidebarPage === 'Designs' ? 'selectedSidebarPage' : null}
+            onClick={() => navigate('/designs')}
+          />
+          <SidebarItem
+            name="Analytics"
+            label="Analytics"
+            className={
+              sidebarPage === 'Analytics' ? 'selectedSidebarPage' : null
+            }
+            onClick={() => navigate('/analytics')}
+          />
+          <SidebarItem
+            name="Glossary"
+            label="Glossary"
+            className={
+              sidebarPage === 'Glossary' ? 'selectedSidebarPage' : null
+            }
+            onClick={() => navigate('/glossary')}
+          />
         </Sidebar>
-      )
-
-      const publicsSidebar = (
-        <SidebarItem
-          name="Sign In"
-          label="Sign In"
-          onClick={() => navigate('/signin')}
-        />
       )
 
       const publicSidebar = (
@@ -62,9 +82,28 @@ const SidebarComp = ({ user, sidebarPage }) => {
             label="Genes"
             onClick={() => navigate('/')}
           />
-          <SidebarItem name="Designs" label="Designs" />
-          <SidebarItem name="Analytics" label="Analytics" />
-          <SidebarItem name="Glossary" label="Glossary" />
+          <SidebarItem
+            name="Designs"
+            label="Designs"
+            className={sidebarPage === 'Designs' ? 'selectedSidebarPage' : null}
+            onClick={() => navigate('/designs')}
+          />
+          <SidebarItem
+            name="Analytics"
+            label="Analytics"
+            className={
+              sidebarPage === 'Analytics' ? 'selectedSidebarPage' : null
+            }
+            onClick={() => navigate('/analytics')}
+          />
+          <SidebarItem
+            name="Glossary"
+            label="Glossary"
+            className={
+              sidebarPage === 'Glossary' ? 'selectedSidebarPage' : null
+            }
+            onClick={() => navigate('/glossary')}
+          />
         </Sidebar>
       )
 

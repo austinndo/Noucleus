@@ -18,25 +18,26 @@ body {
 
 .sidebar {
   margin-left: 0 auto;
+  margin-right: 0 auto;
   width: 12vw;
 }
 
 .selectedSidebarPage button {
-  background-color: rgb(150, 150, 190);
+  background-color: rgba(52, 155, 158, 0.8);
 }
+
+.content {
+  display: flex;
+  flex-direction: row;
+}
+
 
 #sidebar-1 button:hover {
   background-color: rgb(150, 150, 190);
 }
 
-.SignInPage {
-  display: flex;
-  flex-direction: row;
-}
-
-.GenePage {
-  display: flex;
-  flex-direction: row;
+.GenePage article{
+  width:40vw
 }
 
 .GeneCard {
@@ -46,6 +47,7 @@ body {
 
 .GeneCard img{
   width: 100%;
+  object-fit: cover;
 }
 
 .fontIcon {

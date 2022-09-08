@@ -1,9 +1,17 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Button, Input } from 'react-rainbow-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
-const SignUp = () => {
+const SignUp = ({ setSidebarPage }) => {
   let navigate = useNavigate()
+
+  useEffect(() => {
+    setSidebarPage('Sign In')
+  }, [])
+
   const [formValues, setFormValues] = useState({
     name: '',
     username: '',
@@ -42,7 +50,7 @@ const SignUp = () => {
           <form className="signup-form" onSubmit={handleSubmit}>
             <h1>Sign Up</h1>
             <div>
-              <input
+              <Input
                 onChange={handleChange}
                 name="name"
                 type="text"
@@ -52,7 +60,7 @@ const SignUp = () => {
               />
             </div>
             <div className="input-wrapper">
-              <input
+              <Input
                 onChange={handleChange}
                 name="username"
                 type="text"
@@ -62,7 +70,7 @@ const SignUp = () => {
               />
             </div>
             <div className="input-wrapper">
-              <input
+              <Input
                 onChange={handleChange}
                 name="email"
                 type="email"
@@ -72,7 +80,7 @@ const SignUp = () => {
               />
             </div>
             <div className="input-wrapper">
-              <input
+              <Input
                 onChange={handleChange}
                 name="affiliation"
                 type="text"
@@ -81,12 +89,17 @@ const SignUp = () => {
                 required
               />
             </div>
-            <button
+            <Button
               className="signin-btn"
-              disabled={!formValues.username || !formValues.email}
+              disabled={
+                !formValues.username ||
+                !formValues.email ||
+                !formValues.affiliation
+              }
             >
               Sign In
-            </button>
+              <FontAwesomeIcon icon={faArrowRight} className="fontIcon" />
+            </Button>
           </form>
         </div>
       </div>
