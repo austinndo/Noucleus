@@ -10,6 +10,7 @@ import Genes from './pages/Genes'
 import GeneDetail from './pages/GeneDetail'
 import Guides from './pages/Guides'
 import GuidesByTarget from './pages/GuidesByTarget'
+import GuidesByEdit from './pages/GuidesByEdit'
 import Dashboard from './pages/Dashboard'
 import Analytics from './pages/Analytics'
 import Glossary from './pages/Glossary'
@@ -99,6 +100,12 @@ const App = () => {
                   guides={guides}
                   setSidebarPage={setSidebarPage}
                 />
+              }
+            />
+            <Route
+              path="/designs/:editType"
+              element={
+                <GuidesByEdit guides={guides} setSidebarPage={setSidebarPage} />
               }
             />
             <Route
