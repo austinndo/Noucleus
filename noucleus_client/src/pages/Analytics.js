@@ -15,14 +15,27 @@ const Analytics = ({ setSidebarPage, guides }) => {
             <h2>Designer: {guide.user}</h2>
             <ProgressCircular
               value={guide.percent_gc}
-              variant={guide.percent_gc > 40 ? 'success' : 'brand'}
+              variant={
+                guide.percent_gc > 60
+                  ? 'success'
+                  : guide.percent_gc > 40
+                  ? 'brand'
+                  : 'error'
+              }
             />
-            <h1 className="rainbow-font-size-heading_small rainbow-color_gray-3">
-              Percent GC
-            </h1>
+            <h3>Percent GC</h3>
 
-            <h2>Efficiency: {guide.efficieny}</h2>
-            <h2>Percent GC: {guide.percent_gc}</h2>
+            <ProgressCircular
+              value={guide.efficiency}
+              variant={
+                guide.efficiency > 40
+                  ? 'success'
+                  : guide.efficiency > 40
+                  ? 'brand'
+                  : 'error'
+              }
+            />
+            <h3>Efficiency</h3>
           </div>
         ))}
       </div>
