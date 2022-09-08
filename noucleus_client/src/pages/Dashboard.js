@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Dashboard = ({ setSidebarPage, setUser }) => {
+const Dashboard = ({ setSidebarPage, user, setUser }) => {
   let navigate = useNavigate()
 
   useEffect(() => {
@@ -18,6 +18,14 @@ const Dashboard = ({ setSidebarPage, setUser }) => {
       >
         Sign Out
       </button>
+      <h2>{user.name}</h2>
+      <h2>{user.email}</h2>
+      <h2>{user.affiliation}</h2>
+      <ul>
+        {user.user_guides.map((guide) => (
+          <li key={guide.id}>{guide.sequence}</li>
+        ))}
+      </ul>
     </div>
   )
 }

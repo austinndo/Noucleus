@@ -32,14 +32,16 @@ const SignIn = ({ allUsers, setAllUsers, user, setUser, setSidebarPage }) => {
         formValues.username === users.username &&
         formValues.email === users.email
       ) {
+        navigate('/dashboard')
         setUser(users)
       }
     })
 
-    setFormValues({ username: '', email: '' })
-    if (user != null) {
-      navigate('/dashboard')
-    }
+    console.log(user)
+    // setFormValues({ username: '', email: '' })
+    // if (user != null) {
+    //   navigate('/dashboard')
+    // }
   }
 
   return (
