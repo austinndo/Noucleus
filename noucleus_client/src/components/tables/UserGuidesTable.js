@@ -124,11 +124,13 @@ const UserGuidesTable = ({ guides, user }) => {
           <Select
             onChange={handleChange}
             name="cas"
+            value={formValues.cas}
             placeholder="Cas"
             options={casOptions}
           />
           <Select
             onChange={handleChange}
+            value={formValues.strand}
             name="strand"
             placeholder="strand"
             options={strandOptions}
@@ -136,6 +138,7 @@ const UserGuidesTable = ({ guides, user }) => {
           <Select
             onChange={handleChange}
             name="edit_type"
+            value={formValues.edit_type}
             placeholder="type of edit"
             options={editOptions}
           />

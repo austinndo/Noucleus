@@ -9,6 +9,7 @@ const Guides = ({ guides, setSidebarPage }) => {
 
   const [guidesByEdit, setGuidesByEdit] = useState(null)
   const [selectedEdit, setSelectedEdit] = useState('disruption')
+  const [formData, setFormData] = useState(null)
 
   const populateTable = (editType) => {
     let guideProps = []
@@ -26,7 +27,6 @@ const Guides = ({ guides, setSidebarPage }) => {
 
   const guidesTrue = (
     <div>
-      <div>Choose Edit Type here</div>
       <div className="VisualPickerContainer">
         <div
           className={
@@ -81,7 +81,12 @@ const Guides = ({ guides, setSidebarPage }) => {
           <FontAwesomeIcon icon={faDna} /> Insertion{' '}
         </div>
       </div>
-      <GuidesTable guides={guidesByEdit} />
+      <GuidesTable
+        guides={guidesByEdit}
+        selectedEdit={selectedEdit}
+        formData={formData}
+        setFormData={setFormData}
+      />
     </div>
   )
 

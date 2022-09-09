@@ -36,12 +36,6 @@ const SignIn = ({ allUsers, setAllUsers, user, setUser, setSidebarPage }) => {
         setUser(users)
       }
     })
-
-    console.log(user)
-    // setFormValues({ username: '', email: '' })
-    // if (user != null) {
-    //   navigate('/dashboard')
-    // }
   }
 
   return (

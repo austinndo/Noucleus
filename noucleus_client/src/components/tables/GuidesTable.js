@@ -1,41 +1,10 @@
 import React, { useState } from 'react'
-import {
-  Table,
-  Column,
-  MenuItem,
-  Input,
-  Textarea,
-  Select
-} from 'react-rainbow-components'
+import { useNavigate } from 'react-router-dom'
+import { Table, Column, MenuItem } from 'react-rainbow-components'
+import GuideDesignForm from '../GuideDesignForm'
 
-const GuidesTable = ({ guides, user }) => {
-  const casOptions = [
-    { value: 'SpCas9', label: 'SpCas9' },
-    { value: 'SaCas9', label: 'SaCas9' },
-    { value: 'Cas12a', label: 'Cas12a (Cpf1)' }
-  ]
-  const strandOptions = [
-    { value: '+', label: 'forward' },
-    { value: '-', label: 'reverse' }
-  ]
-  const editOptions = [
-    { value: 'disruption', label: 'disruption' },
-    { value: 'deletion', label: 'deletion' },
-    { value: 'correction', label: 'correction' },
-    { value: 'insertion', label: 'insertion' }
-  ]
-
-  const [formValues, setFormValues] = useState({
-    gene: '',
-    username: '',
-    sequence: '',
-    strand: '',
-    cas: '',
-    edit_type: ''
-  })
-  const handleChange = (e) => {
-    setFormValues({ ...formValues, [e.target.name]: e.target.value })
-  }
+const GuidesTable = ({ guides, user, selectedEdit, formData, setFormData }) => {
+  let navigate = useNavigate()
 
   class GuidesTableComp extends React.Component {
     constructor(props) {
@@ -87,7 +56,7 @@ const GuidesTable = ({ guides, user }) => {
             <Column type="action">
               <MenuItem
                 label="Clone"
-                onClick={(event, data) => console.log(`open modal`)}
+                onClick={(event, data) => setFormData({ data })}
               />
               <MenuItem
                 label="See Details"
@@ -103,38 +72,8 @@ const GuidesTable = ({ guides, user }) => {
   if (guides) {
     return (
       <div>
-        <form className="DesignForm">
-          <Input
-            onChange={handleChange}
-            name="gene"
-            type="text"
-            placeholder="gene target"
-            value={formValues.gene}
-            required
-          />
-          <Input
-            onChange={handleChange}
-            name="user"
-            type="text"
-            placeholder="username"
-            value={formValues.username}
-            required
-          />
-          <Select
-            onChange={handleChange}
-            name="cas"
-            placeholder="SpCas9"
-            options={casOptions}
-          />
-          <Textarea
-            onChange={handleChange}
-            name="sequence"
-            placeholder="design sequence"
-            value={formValues.sequence}
-            required
-          />
-        </form>
         <GuidesTableComp guides={guides} />
+        <GuideDesignForm selectedEdit={selectedEdit} formData={formData} />{' '}
       </div>
     )
   } else {
