@@ -36,7 +36,7 @@ const SignUp = ({ setSidebarPage }) => {
       name: '',
       username: '',
       email: '',
-      passwor_digest: 'crispr',
+      password_digest: 'crispr',
       affiliation: ''
     })
     navigate('/signin')

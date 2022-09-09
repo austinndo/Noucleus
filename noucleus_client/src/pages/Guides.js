@@ -4,12 +4,19 @@ import { useNavigate } from 'react-router-dom'
 import GuidesTable from '../components/tables/GuidesTable'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDna } from '@fortawesome/free-solid-svg-icons'
-const Guides = ({ guides, setSidebarPage }) => {
+const Guides = ({ guides, genes, setSidebarPage }) => {
   let navigate = useNavigate()
 
   const [guidesByEdit, setGuidesByEdit] = useState(null)
   const [selectedEdit, setSelectedEdit] = useState('disruption')
-  const [formData, setFormData] = useState(null)
+  const [formValues, setFormValues] = useState({
+    gene: '',
+    username: '',
+    sequence: '',
+    strand: '',
+    cas: '',
+    edit_type: selectedEdit
+  })
 
   const populateTable = (editType) => {
     let guideProps = []
@@ -83,9 +90,10 @@ const Guides = ({ guides, setSidebarPage }) => {
       </div>
       <GuidesTable
         guides={guidesByEdit}
+        genes={genes}
         selectedEdit={selectedEdit}
-        formData={formData}
-        setFormData={setFormData}
+        formValues={formValues}
+        setFormValues={setFormValues}
       />
     </div>
   )

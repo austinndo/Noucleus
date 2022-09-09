@@ -89,7 +89,11 @@ const App = () => {
             <Route
               path="/designs"
               element={
-                <Guides guides={guides} setSidebarPage={setSidebarPage} />
+                <Guides
+                  guides={guides}
+                  genes={genes}
+                  setSidebarPage={setSidebarPage}
+                />
               }
             />
             <Route

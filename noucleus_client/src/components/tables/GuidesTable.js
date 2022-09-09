@@ -1,10 +1,52 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { Table, Column, MenuItem } from 'react-rainbow-components'
 import GuideDesignForm from '../GuideDesignForm'
 
-const GuidesTable = ({ guides, user, selectedEdit, formData, setFormData }) => {
+const URL = process.env.REACT_APP_API_URL
+
+const GuidesTable = ({
+  guides,
+  genes,
+  user,
+  selectedEdit,
+  formValues,
+  setFormValues
+}) => {
   let navigate = useNavigate()
+  let geneClone = ''
+
+  const handleClone = async (...data) => {
+    // const geneIds = (genes, cloneGeneName) => {
+    //   genes.map((gene) => {
+    //     if (cloneGeneName === gene.name) {
+    //       geneClone = gene.id
+    //     }
+    //   })
+    // }
+    // geneIds(genes, data[1].gene)
+
+    //gene:geneClone
+
+    let postData = {
+      gene: data[1].gene,
+      user: 'charlz-darwin',
+      sequence: data[1].sequence,
+      strand: data[1].strand,
+      cas: data[1].cas,
+      edit_type: selectedEdit,
+      efficiency: 0,
+      percent_gc: data[1].percent_gc
+    }
+
+    console.log(postData)
+
+    await axios
+      .post(`${URL}/guides`, postData)
+      .catch((error) => console.log(error))
+    alert(`cloned design ${data[1].id}`)
+  }
 
   class GuidesTableComp extends React.Component {
     constructor(props) {
@@ -54,13 +96,16 @@ const GuidesTable = ({ guides, user, selectedEdit, formData, setFormData }) => {
             <Column header="Efficiency" field="efficiency" sortable />
             <Column header="Strand" field="strand" sortable />
             <Column type="action">
-              <MenuItem
-                label="Clone"
-                onClick={(event, data) => setFormData({ data })}
-              />
+              <MenuItem label="Clone" onClick={handleClone} />
               <MenuItem
                 label="See Details"
                 onClick={(event, data) => console.log(`${data.sequence}`)}
+              />
+              <MenuItem
+                label="Delete"
+                onClick={async (event, data) =>
+                  await axios.delete(`${URL}/guides/${data.id}`)
+                }
               />
             </Column>
           </Table>
@@ -73,7 +118,10 @@ const GuidesTable = ({ guides, user, selectedEdit, formData, setFormData }) => {
     return (
       <div>
         <GuidesTableComp guides={guides} />
-        <GuideDesignForm selectedEdit={selectedEdit} formData={formData} />{' '}
+        <GuideDesignForm
+          selectedEdit={selectedEdit}
+          formValues={formValues}
+        />{' '}
       </div>
     )
   } else {
