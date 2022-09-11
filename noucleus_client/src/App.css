@@ -1,39 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root{
+/* Colors */
+--color-A: rgb(28, 212, 168);
+--color-B: rgb(100, 100, 100, 0.80);
+--color-C: rgb(21, 53, 98);
+}
+
 .Noucleus {
   text-align: center;
   display: flex;
   flex-direction: row;
+  font-family: 'Poppins', sans-serif;
 }
 
 
 body {
   margin: 0 auto;
-  background: linear-gradient(to bottom right, rgba(86, 126, 200, 0.821), rgba(60, 183, 132, 0.82));
+  background: linear-gradient(to bottom right, rgba(86, 126, 200, 0.821), rgb(28, 212, 168, 0.80));
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
 .header {
   height: 100%;
+  margin: 0 auto;
 }
 
 .sidebar {
   margin-left: 0 auto;
-  margin-right: 0 auto;
-  width: 12vw;
+  min-width: 12vw;
+}
+
+.sidebar button {
+  background-color: whitesmoke;
+}
+
+.sidebar button:hover {
+  transition-duration: 0.2s;
+  animation: ease-in-out;
+  transform: scale(1.1);
+  background-color: var(--color-A);
 }
 
 .selectedSidebarPage button {
-  background-color: rgba(52, 155, 158, 0.8);
+  background-color: var(--color-A);
 }
 
 .content {
   display: flex;
   flex-direction: row;
+  margin-left: 0 auto;
 }
 
+.SignInPage {
+  min-width: 60vw;
+  display: flex;
+  flex-direction: column;
+}
 
-#sidebar-1 button:hover {
-  background-color: rgb(150, 150, 190);
+.SignInPage input{
+  width: 50%;
+}
+
+.SignInPage button{
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .GenePage article{
@@ -64,19 +96,51 @@ body {
   display: flex;
   flex-direction: row;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  margin-bottom: 40px;
 }
 
 .VisualPickerCard {
-  background-color: grey;
+  background-color: whitesmoke;
   display: flex;
   flex-direction: column;
+  border-radius: 0.5rem;
+  width: 8%;
+}
+
+.VisualPickerCard:hover {
+  transition-duration: 0.2s;
+  animation: ease-in-out;
+  transform: scale(1.1);
+  background-color: var(--color-A);
 }
 
 .VisualPickerCardSelected {
-  background-color: green;
+  background-color: var(--color-A);
   display: flex;
   flex-direction: column;
+  border-radius: 0.5rem;
+  width: 8%;
+}
+
+.DesignPage {
+  margin-right: 40px;
+}
+
+.DesignTable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.DesignForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 40px;
+  width: 60vw;
 }
 
 .AnalyticsCard {

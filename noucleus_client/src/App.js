@@ -91,6 +91,7 @@ const App = () => {
               element={
                 <Guides
                   guides={guides}
+                  setGuides={setGuides}
                   genes={genes}
                   setSidebarPage={setSidebarPage}
                 />

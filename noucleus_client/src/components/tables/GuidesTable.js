@@ -3,32 +3,32 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { Table, Column, MenuItem } from 'react-rainbow-components'
 import GuideDesignForm from '../GuideDesignForm'
+import { confirm } from 'react-confirm-box'
 
 const URL = process.env.REACT_APP_API_URL
 
 const GuidesTable = ({
   guides,
+  setGuides,
   genes,
+  populateTable,
   user,
   selectedEdit,
   formValues,
   setFormValues
 }) => {
   let navigate = useNavigate()
-  let geneClone = ''
+
+  const [formToggle, setFormToggle] = useState(false)
+  const [selectedRecord, setSelectedRecord] = useState(null)
+
+  const getGuides = async () => {
+    let res = await axios.get(`${URL}/guides`)
+    setGuides(res.data)
+    console.log(res.data)
+  }
 
   const handleClone = async (...data) => {
-    // const geneIds = (genes, cloneGeneName) => {
-    //   genes.map((gene) => {
-    //     if (cloneGeneName === gene.name) {
-    //       geneClone = gene.id
-    //     }
-    //   })
-    // }
-    // geneIds(genes, data[1].gene)
-
-    //gene:geneClone
-
     let postData = {
       gene: data[1].gene,
       user: 'charlz-darwin',
@@ -45,7 +45,44 @@ const GuidesTable = ({
     await axios
       .post(`${URL}/guides`, postData)
       .catch((error) => console.log(error))
-    alert(`cloned design ${data[1].id}`)
+
+    const cloneConfirm = () => {
+      alert(`Cloned design ${data[1].id}`)
+    }
+
+    cloneConfirm()
+
+    if (cloneConfirm) {
+      getGuides()
+      populateTable(selectedEdit)
+    }
+  }
+
+  const handleUpdate = (...data) => {
+    formToggle === false ? setFormToggle(true) : setFormToggle(false)
+    setSelectedRecord(data[1].id)
+
+    let formData = {
+      gene: data[1].gene,
+      user: 'charlz-darwin',
+      sequence: data[1].sequence,
+      strand: data[1].strand,
+      cas: data[1].cas,
+      edit_type: selectedEdit,
+      efficiency: 0,
+      percent_gc: data[1].percent_gc
+    }
+
+    setFormValues(formData)
+    console.log(formValues)
+  }
+
+  const handleDelete = async (...data) => {
+    await axios.delete(`${URL}/guides/${data[1].id}`)
+
+    alert(`Deleted design ${data[1].id}`)
+    getGuides()
+    populateTable(selectedEdit)
   }
 
   class GuidesTableComp extends React.Component {
@@ -91,22 +128,16 @@ const GuidesTable = ({
             sortDirection={sortDirection}
             sortedBy={sortedBy}
           >
+            <Column header="Id" field="id" sortable />
             <Column header="Target" field="gene" sortable />
+            <Column header="Sequence" field="sequence" width={300} />
             <Column header="GC Content" field="percent_gc" sortable />
             <Column header="Efficiency" field="efficiency" sortable />
             <Column header="Strand" field="strand" sortable />
             <Column type="action">
               <MenuItem label="Clone" onClick={handleClone} />
-              <MenuItem
-                label="See Details"
-                onClick={(event, data) => console.log(`${data.sequence}`)}
-              />
-              <MenuItem
-                label="Delete"
-                onClick={async (event, data) =>
-                  await axios.delete(`${URL}/guides/${data.id}`)
-                }
-              />
+              <MenuItem label="Update" onClick={handleUpdate} />
+              <MenuItem label="Delete" onClick={handleDelete} />
             </Column>
           </Table>
         </div>
@@ -116,20 +147,24 @@ const GuidesTable = ({
 
   if (guides) {
     return (
-      <div>
+      <div className="DesignTable">
         <GuidesTableComp guides={guides} />
-        <GuideDesignForm
-          selectedEdit={selectedEdit}
-          formValues={formValues}
-        />{' '}
+        {formToggle === true ? (
+          <GuideDesignForm
+            formValues={formValues}
+            setFormValues={setFormValues}
+            selectedEdit={selectedEdit}
+            selectedRecord={selectedRecord}
+            formToggle={formToggle}
+            setFormToggle={setFormToggle}
+          />
+        ) : (
+          <div></div>
+        )}
       </div>
     )
   } else {
-    return (
-      <div>
-        <GuidesTableComp />
-      </div>
-    )
+    return <div>Loading guides ...</div>
   }
 }
 

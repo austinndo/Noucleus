@@ -21,7 +21,7 @@ const Genes = ({ genes, setSidebarPage }) => {
         <div
           className="GeneCard"
           key={id}
-          onClick={() => navigate(`/gene/${index}`)}
+          onClick={() => navigate(`/gene/${id - 1}`)}
         >
           <h2>{name}</h2>
           <img src={image_ref} />

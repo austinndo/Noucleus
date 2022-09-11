@@ -1,10 +1,14 @@
 import React from 'react'
+import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import GuidesTable from '../components/tables/GuidesTable'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDna } from '@fortawesome/free-solid-svg-icons'
-const Guides = ({ guides, genes, setSidebarPage }) => {
+
+const URL = process.env.REACT_APP_API_URL
+
+const Guides = ({ guides, genes, setGuides, setSidebarPage }) => {
   let navigate = useNavigate()
 
   const [guidesByEdit, setGuidesByEdit] = useState(null)
@@ -15,8 +19,19 @@ const Guides = ({ guides, genes, setSidebarPage }) => {
     sequence: '',
     strand: '',
     cas: '',
-    edit_type: selectedEdit
+    edit_type: selectedEdit,
+    efficiency: 0
   })
+  useEffect(() => {
+    const getGuides = async () => {
+      let res = await axios.get(`${URL}/guides`)
+      setGuides(res.data)
+      console.log(res.data)
+    }
+    getGuides()
+    setSidebarPage('Designs')
+    populateTable(selectedEdit)
+  }, [])
 
   const populateTable = (editType) => {
     let guideProps = []
@@ -27,13 +42,9 @@ const Guides = ({ guides, genes, setSidebarPage }) => {
     })
     setGuidesByEdit(guideProps)
   }
-  useEffect(() => {
-    setSidebarPage('Designs')
-    populateTable(selectedEdit)
-  }, [])
 
   const guidesTrue = (
-    <div>
+    <div className="DesignsPage">
       <div className="VisualPickerContainer">
         <div
           className={
@@ -90,6 +101,8 @@ const Guides = ({ guides, genes, setSidebarPage }) => {
       </div>
       <GuidesTable
         guides={guidesByEdit}
+        setGuides={setGuides}
+        populateTable={populateTable}
         genes={genes}
         selectedEdit={selectedEdit}
         formValues={formValues}
@@ -99,7 +112,7 @@ const Guides = ({ guides, genes, setSidebarPage }) => {
   )
 
   const guidesFalse = (
-    <div>
+    <div className="DesignsPage">
       <h2>Guides page, guides loading...</h2>
     </div>
   )

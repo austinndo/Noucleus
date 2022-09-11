@@ -4,11 +4,35 @@ import { ProgressCircular } from 'react-rainbow-components'
 const Analytics = ({ setSidebarPage, guides }) => {
   useEffect(() => {
     setSidebarPage('Analytics')
+    editEfficiencyAverage(guides)
   }, [])
+
+  let efficiencies = []
+  let guideCount = 0
+  let avg = 0
+
+  const editEfficiencyAverage = (guides) => {
+    guides.map((guide) => {
+      efficiencies.push(guide.efficiency)
+    })
+    guideCount = efficiencies.length + 1
+    console.log(guideCount)
+    efficiencies.map((num) => {
+      avg = num + avg
+    })
+    avg = avg / guideCount
+    console.log(avg)
+  }
 
   if (guides) {
     return (
       <div>
+        <button onClick={() => editEfficiencyAverage(guides)}>Calc Avg</button>
+        <ProgressCircular
+          value={avg}
+          variant={{ avg } > 60 ? 'success' : { avg } > 40 ? 'brand' : 'error'}
+        />{' '}
+        <h2>Average Edit Efficiency</h2>
         <h2>Analytics Page</h2>
         {guides.map((guide) => (
           <div className="AnalyticsCard" key={guide.id}>

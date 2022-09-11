@@ -72,7 +72,7 @@ const SignIn = ({ allUsers, setAllUsers, user, setUser, setSidebarPage }) => {
         </Button>
       </form>
       <div className="link-switch">
-        <Link className="link signLink" to="/signup">
+        <Link className="signupLink" to="/signup">
           Don't have an account?
         </Link>
       </div>
