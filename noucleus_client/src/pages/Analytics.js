@@ -37,29 +37,33 @@ const Analytics = ({ setSidebarPage, guides }) => {
         {guides.map((guide) => (
           <div className="AnalyticsCard" key={guide.id}>
             <h2>Designer: {guide.user}</h2>
-            <ProgressCircular
-              value={guide.percent_gc}
-              variant={
-                guide.percent_gc > 60
-                  ? 'success'
-                  : guide.percent_gc > 40
-                  ? 'brand'
-                  : 'error'
-              }
-            />
-            <h3>Percent GC</h3>
+            <div className="AnalyticsGC">
+              <ProgressCircular
+                value={guide.percent_gc}
+                variant={
+                  guide.percent_gc > 60
+                    ? 'success'
+                    : guide.percent_gc > 40
+                    ? 'brand'
+                    : 'error'
+                }
+              />
+              <h3>Percent GC</h3>
+            </div>
 
-            <ProgressCircular
-              value={guide.efficiency}
-              variant={
-                guide.efficiency > 40
-                  ? 'success'
-                  : guide.efficiency > 40
-                  ? 'brand'
-                  : 'error'
-              }
-            />
-            <h3>Efficiency</h3>
+            <div className="AnalyticsEfficiency">
+              <ProgressCircular
+                value={guide.efficiency}
+                variant={
+                  guide.efficiency > 40
+                    ? 'success'
+                    : guide.efficiency > 40
+                    ? 'brand'
+                    : 'error'
+                }
+              />
+              <h3>Efficiency</h3>
+            </div>
           </div>
         ))}
       </div>

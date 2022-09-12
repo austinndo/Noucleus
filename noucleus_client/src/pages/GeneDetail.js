@@ -8,28 +8,28 @@ const GeneDetail = ({ genes, setGenes, setSidebarPage }) => {
 
   const [selectedGene, setSelectedGene] = useState(null)
 
-  // const assignGene = () => {
-  //   console.log(geneId)
-  //   genes.map((gene) => {
-  //     if (gene.id === { geneId }) {
-  //       setSelectedGene(gene)
-  //     }
-  //   })
-  // }
-
   useEffect(() => {
     setSidebarPage('Genes')
     setSelectedGene(selected)
-    // assignGene()
   }, [])
 
   if (selectedGene != null) {
     return (
       <div>
-        <h2>Gene Detail, gene found</h2>
         <div key={selectedGene.id}>
           <h2>{selectedGene.name}</h2>
+          <img src={selectedGene.image_ref} />
           <h2>{selectedGene.function}</h2>
+          <h2>Gene sequences:</h2>
+          <ul>
+            {selectedGene.gene_guides.map((gene) => (
+              <li>
+                <h2>
+                  {gene.id}) {gene.sequence}
+                </h2>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     )
