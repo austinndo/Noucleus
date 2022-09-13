@@ -107,6 +107,12 @@ body {
   list-style:none;
 }
 
+.PaginationContainer {
+  position: absolute;
+  left: 42vw;
+  top:75vh
+}
+
 .VisualPickerContainer {
   display: flex;
   flex-direction: row;
@@ -183,19 +189,4 @@ body {
 
 .App-link {
   color: #61dafb;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
