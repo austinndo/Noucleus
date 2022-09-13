@@ -94,9 +94,18 @@ body {
   object-fit: cover;
 }
 
-/* .PaginationContainer {
-  position: fixed;
-} */
+.GeneDetailContainer {
+ margin-left: 4rem;
+ margin-right: 4rem;
+}
+
+.GeneDetailContainer img{
+  width: 50vw;
+}
+
+.GeneDetailContainer ul{
+  list-style:none;
+}
 
 .VisualPickerContainer {
   display: flex;
@@ -110,8 +119,10 @@ body {
   background-color: whitesmoke;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   border-radius: 0.5rem;
-  width: 8%;
+  width: 10%;
+  height:70px;
 }
 
 .VisualPickerCard:hover {
@@ -125,8 +136,10 @@ body {
   background-color: var(--color-A);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   border-radius: 0.5rem;
-  width: 8%;
+  width: 10%;
+  height: 70px;
 }
 
 .DesignPage {

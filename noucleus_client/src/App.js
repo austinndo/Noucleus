@@ -33,6 +33,7 @@ const App = () => {
       setGuides(res.data)
       console.log(res.data)
     }
+
     getGenes()
     getGuides()
   }, [])

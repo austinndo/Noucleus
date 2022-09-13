@@ -16,17 +16,18 @@ const GeneDetail = ({ genes, setGenes, setSidebarPage }) => {
   if (selectedGene != null) {
     return (
       <div>
-        <div key={selectedGene.id}>
+        <div className="GeneDetailContainer" key={selectedGene.id}>
           <h2>{selectedGene.name}</h2>
           <img src={selectedGene.image_ref} />
-          <h2>{selectedGene.function}</h2>
+          <h2>Function:</h2>
+          <h4>{selectedGene.function}</h4>
           <h2>Gene sequences:</h2>
           <ul>
             {selectedGene.gene_guides.map((gene) => (
               <li>
-                <h2>
-                  {gene.id}) {gene.sequence}
-                </h2>
+                <h4>
+                  #{gene.id}) {gene.sequence}
+                </h4>
               </li>
             ))}
           </ul>

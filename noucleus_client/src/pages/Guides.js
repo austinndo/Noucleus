@@ -4,7 +4,13 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import GuidesTable from '../components/tables/GuidesTable'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDna } from '@fortawesome/free-solid-svg-icons'
+import {
+  faDna,
+  faXmark,
+  faBan,
+  faScrewdriverWrench,
+  faCirclePlus
+} from '@fortawesome/free-solid-svg-icons'
 
 const URL = process.env.REACT_APP_API_URL
 
@@ -57,7 +63,7 @@ const Guides = ({ guides, genes, setGuides, setSidebarPage }) => {
             setSelectedEdit('disruption')
           }}
         >
-          <FontAwesomeIcon icon={faDna} /> Disruption
+          <FontAwesomeIcon icon={faXmark} /> Disruption
         </div>
         <div
           className={
@@ -70,7 +76,7 @@ const Guides = ({ guides, genes, setGuides, setSidebarPage }) => {
             setSelectedEdit('deletion')
           }}
         >
-          <FontAwesomeIcon icon={faDna} /> Deletion{' '}
+          <FontAwesomeIcon icon={faBan} /> Deletion{' '}
         </div>
         <div
           className={
@@ -83,7 +89,7 @@ const Guides = ({ guides, genes, setGuides, setSidebarPage }) => {
             setSelectedEdit('correction')
           }}
         >
-          <FontAwesomeIcon icon={faDna} /> Correction
+          <FontAwesomeIcon icon={faScrewdriverWrench} /> Correction
         </div>
         <div
           className={
@@ -96,7 +102,7 @@ const Guides = ({ guides, genes, setGuides, setSidebarPage }) => {
             setSelectedEdit('insertion')
           }}
         >
-          <FontAwesomeIcon icon={faDna} /> Insertion{' '}
+          <FontAwesomeIcon icon={faCirclePlus} /> Insertion{' '}
         </div>
       </div>
       <GuidesTable

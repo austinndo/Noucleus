@@ -1,36 +1,60 @@
-import { useEffect } from 'react'
-import { ProgressCircular } from 'react-rainbow-components'
+import { useEffect, useState } from 'react'
+import { ProgressCircular, Chart, Dataset } from 'react-rainbow-components'
 
 const Analytics = ({ setSidebarPage, guides }) => {
-  useEffect(() => {
-    setSidebarPage('Analytics')
-    editEfficiencyAverage(guides)
-  }, [])
-
   let efficiencies = []
+  let ids = []
   let guideCount = 0
   let avg = 0
+  const [average, setAverage] = useState(0)
 
-  const editEfficiencyAverage = (guides) => {
-    guides.map((guide) => {
-      efficiencies.push(guide.efficiency)
-    })
-    guideCount = efficiencies.length + 1
-    console.log(guideCount)
-    efficiencies.map((num) => {
-      avg = num + avg
-    })
-    avg = avg / guideCount
-    console.log(avg)
-  }
+  useEffect(() => {
+    const getData = () => {
+      guides.forEach((guide) => {
+        efficiencies.push(guide.efficiency)
+      })
+      guides.map((guide) => {
+        ids.push(guide.id)
+      })
+    }
+    const getAvgEfficiency = () => {
+      guideCount = guides.length
+      guides.map((guide) => {
+        avg = avg + guide.efficiency
+      })
+      avg = avg / guideCount
+      avg = Math.floor(avg)
+      setAverage(avg)
+    }
+    setSidebarPage('Analytics')
+    getData()
+    getAvgEfficiency()
+    // editEfficiencyAverage(guides)
+  }, [])
+
+  // const editEfficiencyAverage = (guides) => {
+  //   guides.map((guide) => {
+  //     efficiencies.push(guide.efficiency)
+  //   })
+  //   guideCount = efficiencies.length + 1
+  //   console.log(guideCount)
+  //   efficiencies.map((num) => {
+  //     avg = num + avg
+  //   })
+  //   avg = avg / guideCount
+  //   console.log(avg)
+  // }
 
   if (guides) {
     return (
       <div>
-        <button onClick={() => editEfficiencyAverage(guides)}>Calc Avg</button>
+        <div></div>
+        {/* <button onClick={() => editEfficiencyAverage(guides)}>Calc Avg</button> */}
         <ProgressCircular
-          value={avg}
-          variant={{ avg } > 60 ? 'success' : { avg } > 40 ? 'brand' : 'error'}
+          value={average}
+          variant={
+            { average } > 60 ? 'success' : { average } > 40 ? 'brand' : 'error'
+          }
         />{' '}
         <h2>Average Edit Efficiency</h2>
         <h2>Analytics Page</h2>
