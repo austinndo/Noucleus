@@ -10,7 +10,6 @@ const Dashboard = ({ setSidebarPage, user, setUser }) => {
   }, [])
   return (
     <div>
-      <h2>Dashboard Page</h2>
       <button
         onClick={() => {
           setUser(null)
@@ -19,12 +18,10 @@ const Dashboard = ({ setSidebarPage, user, setUser }) => {
       >
         Sign Out
       </button>
-      {/* {user.user_guides.map((guide) => (
 
-      ))} */}
-      <h2>{user.name}</h2>
-      <h2>{user.email}</h2>
-      <h2>{user.affiliation}</h2>
+      <h2>Name: {user.name}</h2>
+      <h2>Email: {user.email}</h2>
+      <h2>Affiliation: {user.affiliation}</h2>
       <UserGuidesTable guides={user.user_guides} />
     </div>
   )

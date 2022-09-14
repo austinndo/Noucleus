@@ -104,52 +104,6 @@ const UserGuidesTable = ({ guides, user }) => {
   if (guides) {
     return (
       <div>
-        <form className="DesignForm">
-          <Input
-            onChange={handleChange}
-            name="gene"
-            type="text"
-            placeholder="gene target"
-            value={formValues.gene}
-            required
-          />
-          <Input
-            onChange={handleChange}
-            name="user"
-            type="text"
-            placeholder="username"
-            value={formValues.username}
-            required
-          />
-          <Select
-            onChange={handleChange}
-            name="cas"
-            value={formValues.cas}
-            placeholder="Cas"
-            options={casOptions}
-          />
-          <Select
-            onChange={handleChange}
-            value={formValues.strand}
-            name="strand"
-            placeholder="strand"
-            options={strandOptions}
-          />
-          <Select
-            onChange={handleChange}
-            name="edit_type"
-            value={formValues.edit_type}
-            placeholder="type of edit"
-            options={editOptions}
-          />
-          <Textarea
-            onChange={handleChange}
-            name="sequence"
-            placeholder="design sequence"
-            value={formValues.sequence}
-            required
-          />
-        </form>
         <GuidesTableComp guides={guides} />
       </div>
     )

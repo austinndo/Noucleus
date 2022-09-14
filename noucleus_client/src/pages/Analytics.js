@@ -1,5 +1,6 @@
+import React from 'react'
 import { useEffect, useState } from 'react'
-import { ProgressCircular, Chart, Dataset } from 'react-rainbow-components'
+import { ProgressCircular } from 'react-rainbow-components'
 
 const Analytics = ({ setSidebarPage, guides }) => {
   let efficiencies = []
@@ -7,15 +8,19 @@ const Analytics = ({ setSidebarPage, guides }) => {
   let guideCount = 0
   let avg = 0
   const [average, setAverage] = useState(0)
+  const [idLabels, setidLabels] = useState([])
+  const [efficiencyValues, setEfficiencyValues] = useState([])
 
   useEffect(() => {
     const getData = () => {
       guides.forEach((guide) => {
         efficiencies.push(guide.efficiency)
       })
+      setEfficiencyValues(efficiencies)
       guides.map((guide) => {
         ids.push(guide.id)
       })
+      setidLabels(ids)
     }
     const getAvgEfficiency = () => {
       guideCount = guides.length
@@ -29,38 +34,27 @@ const Analytics = ({ setSidebarPage, guides }) => {
     setSidebarPage('Analytics')
     getData()
     getAvgEfficiency()
-    // editEfficiencyAverage(guides)
   }, [])
-
-  // const editEfficiencyAverage = (guides) => {
-  //   guides.map((guide) => {
-  //     efficiencies.push(guide.efficiency)
-  //   })
-  //   guideCount = efficiencies.length + 1
-  //   console.log(guideCount)
-  //   efficiencies.map((num) => {
-  //     avg = num + avg
-  //   })
-  //   avg = avg / guideCount
-  //   console.log(avg)
-  // }
 
   if (guides) {
     return (
-      <div>
-        <div></div>
-        {/* <button onClick={() => editEfficiencyAverage(guides)}>Calc Avg</button> */}
-        <ProgressCircular
-          value={average}
-          variant={
-            { average } > 60 ? 'success' : { average } > 40 ? 'brand' : 'error'
-          }
-        />{' '}
-        <h2>Average Edit Efficiency</h2>
-        <h2>Analytics Page</h2>
-        {guides.map((guide) => (
+      <div className="AnalyticsPage">
+        <div className="AnalyticsHeader">
+          <ProgressCircular
+            value={average}
+            variant={
+              { average } > 60
+                ? 'success'
+                : { average } > 40
+                ? 'brand'
+                : 'error'
+            }
+          />{' '}
+          <h2>Average Edit Efficiency</h2>
+        </div>
+        {guides.reverse().map((guide) => (
           <div className="AnalyticsCard" key={guide.id}>
-            <h2>Designer: {guide.user}</h2>
+            <h3>#{guide.id}:</h3>
             <div className="AnalyticsGC">
               <ProgressCircular
                 value={guide.percent_gc}
