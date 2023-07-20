@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-:root{
-/* Colors */
---color-A: rgb(28, 212, 168);
---color-B: rgb(100, 100, 100, 0.60);
---color-C: rgb(21, 53, 98);
+:root {
+  /* Colors */
+  --color-A: rgb(28, 212, 168);
+  --color-B: rgb(100, 100, 100, 0.60);
+  --color-C: rgb(21, 53, 98);
 }
 
 .Noucleus {
@@ -60,17 +60,38 @@ body {
   flex-direction: column;
 }
 
-.SignInPage input{
+.SignInPage input {
   width: 50%;
 }
 
-.SignInPage button{
+.SignInPage button {
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.GenePage article{
-  width:40vw
+.Dashboard {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3vw;
+  align-items: center;
+}
+
+.Dashboard button {
+  width: 10vw;
+  border-radius: 1rem;
+}
+
+.Dashboard button:hover {
+  width: 10vw;
+  border-radius: 1rem;
+  transition-duration: 0.2s;
+  animation: ease-in-out;
+  transform: scale(1.1);
+  background-color: var(--color-A);
+}
+
+.GenePage article {
+  width: 40vw
 }
 
 .GeneCardContainer {
@@ -88,29 +109,36 @@ body {
   height: 70%;
 }
 
-.GeneCard img{
+.GeneCard img {
   width: 100%;
   height: fit-content;
   object-fit: cover;
 }
 
-.GeneDetailContainer {
- margin-left: 4rem;
- margin-right: 4rem;
+.GeneCard:hover img {
+  transition-duration: 0.2s;
+  animation: ease-in-out;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
-.GeneDetailContainer img{
+.GeneDetailContainer {
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+.GeneDetailContainer img {
   width: 50vw;
 }
 
-.GeneDetailContainer ul{
-  list-style:none;
+.GeneDetailContainer ul {
+  list-style: none;
 }
 
 .PaginationContainer {
   position: absolute;
   left: 42vw;
-  top:75vh
+  top: 75vh
 }
 
 .VisualPickerContainer {
@@ -128,7 +156,7 @@ body {
   justify-content: center;
   border-radius: 0.5rem;
   width: 10%;
-  height:70px;
+  height: 70px;
 }
 
 .VisualPickerCard:hover {
@@ -169,9 +197,9 @@ body {
 }
 
 .AnalyticsPage {
-display: flex;
- flex-direction: column;
- justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .AnalyticsHeader {
@@ -182,13 +210,13 @@ display: flex;
 }
 
 .AnalyticsCard {
- display: flex;
- flex-direction: row;
- justify-content: center;
- gap: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 4rem;
 }
 
-.AnalyticsCard svg{
+.AnalyticsCard svg {
   margin-left: 200rem;
   margin-right: 200rem;
 }
@@ -207,6 +235,17 @@ display: flex;
   margin-left: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.GlossaryPage {
+  display: flex;
+  flex-direction: column;
+}
+
+.GlossaryContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.GlossaryContent img {
+  width: 600px;
+  margin-left: 15rem;
 }

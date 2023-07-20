@@ -60,9 +60,9 @@ const Analytics = ({ setSidebarPage, guides }) => {
                 value={guide.percent_gc}
                 variant={
                   guide.percent_gc > 60
-                    ? 'success'
-                    : guide.percent_gc > 40
                     ? 'brand'
+                    : guide.percent_gc > 40
+                    ? 'success'
                     : 'error'
                 }
               />

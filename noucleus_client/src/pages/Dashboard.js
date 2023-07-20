@@ -9,7 +9,7 @@ const Dashboard = ({ setSidebarPage, user, setUser }) => {
     setSidebarPage('Dashboard')
   }, [])
   return (
-    <div>
+    <div className="Dashboard">
       <button
         onClick={() => {
           setUser(null)

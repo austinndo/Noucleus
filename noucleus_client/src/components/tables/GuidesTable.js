@@ -3,7 +3,6 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { Table, Column, MenuItem } from 'react-rainbow-components'
 import GuideDesignForm from '../GuideDesignForm'
-import { confirm } from 'react-confirm-box'
 
 const URL = process.env.REACT_APP_API_URL
 
